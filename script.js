@@ -1,11 +1,12 @@
 const slotItems = ["🍒", "🍋", "🍊", "🍇", "🍉", "⭐", "Didier"];
 let money = 100; // Montant initial d'argent
-const spinCost = 10; // Coût pour chaque tour
-const winAmount = 500; // Montant gagné si on obtient 3 symboles identiques
+const spinCost = 5; // Coût pour chaque tour
+const winAmount = 1000; // Montant gagné si on obtient 3 symboles identiques
 
 // Récupère les éléments HTML
 const message = document.getElementById("message");
 const spinButton = document.getElementById("spin-button");
+const addButton = document.getElementById("add-button");
 const moneyDisplay = document.getElementById("money");
 
 // Met à jour l'affichage de l'argent
@@ -58,13 +59,21 @@ function spinSlots() {
             money += winAmount;
             message.innerText = "T'as gagné espèce d'abruti va 🎉 +" + winAmount + "€";
         } else {
-            message.innerText = "Réessaye espèce de fils de...";
+            message.innerText = "Réessaye...";
         }
 
         updateMoneyDisplay();
         spinButton.disabled = false;
     }, 2000);
 }
+
+/*Le bouton add-button est utilisé pour ajouter de l'argent au joueur. Lorsque le joueur clique sur le bouton, une fonction addMoney est appelée. Cette fonction ajoute 100€ au montant d'argent du joueur et met à jour l'affichage de l'argent.*/
+function addMoney() {
+    money += 2
+    updateMoneyDisplay();
+}
+// Ajoute un écouteur d'événement au bouton add-button
+addButton.addEventListener("click", addMoney);
 
 // Initialise le jeu
 updateMoneyDisplay();
